@@ -5,6 +5,7 @@
   <link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
   <style>
     body {
+      border-left: #303131 solid 60px;
       margin: 0;
       background-color: #1e1e1e;
       color: #d4d4d4;
@@ -14,6 +15,7 @@
       flex-direction: column;
     }
     .title-bar {
+      margin-left: -60px;
       background-color: #2d2d2d;
       padding: 6px 12px;
       font-size: 14px;
@@ -21,6 +23,7 @@
       border-bottom: 2px solid #2e2e2e;
     }
     .title-bar-top {
+      margin-left: -60px;
       background-color: #2d2d2d;
       padding: 6px 12px;
       font-size: 14px;
@@ -34,7 +37,6 @@
       border-bottom: 1px solid #333;
     }
     .tab {
-      
       padding: 6px 12px;
       background-color: #1e1e1e;
       border-top: 2px solid #007acc;
@@ -46,7 +48,7 @@
       background-color: #252526;
       border-left: 35px solid #252526;
       border-right: 35px solid #252526;
-      border-bottom: 2px solid #007acc;
+      border-bottom: 1px solid #007acc;
       color: white;
     }
     .main {
@@ -80,9 +82,11 @@
     .comment { color: #6A9955; }
 
     .terminal {
-      border-left: 217px solid #333;
+      /*border-left: 277px solid #33333300;*/
+      margin-left: 217px;
+      border-left: #a1830018 solid 1px;
       background-color: #1e1e1e;
-      border-top: 1px solid #333;
+      border-top: 2px solid #a18400;
       height: 30%;
       overflow-y: auto;
       padding: 12px;
@@ -90,7 +94,10 @@
     }
 
     .prompt { color: #08c557; }
-    .output { color: #dcdcaa; }
+    .output {
+      color: #dcdcaa;
+      margin-left: 15px;
+    }
     input {
       background: none;
       border: none;
@@ -99,6 +106,7 @@
       font-size: inherit;
       width: 90%;
       outline: none;
+      margin-left: 15px;
     }
 
     .files {
@@ -123,10 +131,11 @@
 
   </style>
 </head>
+
 <body>
-  <div class="title-bar-top">[Extension Development Host] ● welcome.py - tmp - Visual Studio Code - Copyrights ~ @shamanthss</div>
-  <div class="title-bar"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" style="width: 16px; vertical-align: middle; margin-right: 4px;">  File   Edit    Selection    View    Go    Run    Terminal    Help</div>
-  <div class="tabs">
+    <div class="title-bar-top">[Extension Development Host] ● welcome.py - tmp - Visual Studio Code - Copyrights ~ @shamanthss</div>
+    <div class="title-bar"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" style="width: 16px; vertical-align: middle; margin-right: 4px;">  File   Edit    Selection    View    Go    Run    Terminal    Help</div>
+    <div class="tabs">
     <div class="file-explorer">File Explorer</div>
     <div class="tab"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" style="width: 16px; vertical-align: middle; margin-right: 4px;">welcome.py ❌</div>
   </div>
@@ -221,7 +230,7 @@
   </div>
 
   <div class="terminal" id="terminal">
-    <div><span class="prompt">PS C:\Users\Hackerman&gt;</span> python welcome.py</div><br>
+    <div><span class="prompt">~ PS C:\Users\Hackerman&gt;</span> python welcome.py</div><br>
     <div class="output">
       Welcome to the CTF!<br>
       Please choose an option:<br>
@@ -231,47 +240,56 @@
       4. Exit CTF<br>
     </div>
     <div><br>
-      <input type="text" id="user-input" placeholder="Enter your choice (1-4): ..." autofocus>
+      <input type="text" id="user-input" placeholder="Enter your choice (1-4): ..." autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     </div>
   </div>
 
   <script>
     const inputField = document.getElementById('user-input');
     inputField.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        const value = inputField.value.trim();
-        const terminal = document.getElementById('terminal');
-        const output = document.createElement('div');
-        output.innerHTML = `<span class="prompt"></span> ${value}<br><span class="output">` + getResponse(value) + '</span>';
-        terminal.appendChild(output);
-        inputField.value = '';
-        terminal.scrollTop = terminal.scrollHeight;
-      }
-    });
+        if (e.key === 'Enter') {
+            const value = inputField.value.trim();
+            const terminal = document.getElementById('terminal');
+            const output = document.createElement('div');
+            
+            output.innerHTML = `<span class="prompt"></span><br><span class="output">` + getResponse(value) + '</span>';
+            terminal.appendChild(output);
+            inputField.value = '';
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+    }
+    );
 
     function getResponse(cmd) {
-      switch (cmd.toLowerCase()) {
-        case '1':
-        case 'login':
-          window.location.href = '/login';
-          break;
-        case '2':
-        case 'register':
-          window.location.href = '/register';
-          break;
-        case '3':
-        case 'scoreboard':
-        case 'view scoreboard':
-          window.location.href = '/scoreboard';
-          break;
-        case '4':
-        case 'exit':
-          window.location.href = 'https://raw.githubusercontent.com/shamanthss/ctfd-vscode-theme/refs/heads/main/img/bonk.jpg';
-          break;
-        default:
-          window.location.href = 'https://raw.githubusercontent.com/shamanthss/ctfd-vscode-theme/refs/heads/main/img/bonk-default.jpg';
-      }
-    }
+        let response = '';
+        switch (cmd.toLowerCase()) {
+            case '1':
+            case 'register':
+                response = 'Redirecting to registration...';
+                setTimeout(() => window.location.href = '/login', 1500);
+                break;
+            case '2':
+            case 'login':
+                response = 'Redirecting to login...';
+                setTimeout(() => window.location.href = '/register', 1500);
+                break;
+            case '3':
+            case 'scoreboard':
+            case 'view scoreboard':
+                response = 'Redirecting to scoreboard...';
+                setTimeout(() => window.location.href = '/scoreboard', 1500);
+                break;
+            case '4':
+            case 'exit':
+                response = 'Exiting CTF... Goodbye!?';
+                setTimeout(() => window.location.href = 'https://raw.githubusercontent.com/shamanthss/ctfd-vscode-theme/refs/heads/main/img/bonk.jpg', 1500);
+                break;
+            default:
+                response = 'Invalid choice. Please select a valid option.';
+                setTimeout(() => window.location.href = 'https://raw.githubusercontent.com/shamanthss/ctfd-vscode-theme/refs/heads/main/img/bonk-default.jpg', 1500);
+                break;
+        }
+    return response;}
   </script>
 </body>
 </html>
