@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>VS Code</title>
   <link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
   <style>
     body {
@@ -19,6 +18,15 @@
       padding: 6px 12px;
       font-size: 14px;
       color: #ccc;
+      border-bottom: 2px solid #2e2e2e;
+    }
+    .title-bar-top {
+      background-color: #2d2d2d;
+      padding: 6px 12px;
+      font-size: 14px;
+      color: #ccc;
+      text-align: center;
+      font-weight: bold;
     }
     .tabs {
       display: flex;
@@ -26,9 +34,19 @@
       border-bottom: 1px solid #333;
     }
     .tab {
+      
       padding: 6px 12px;
       background-color: #1e1e1e;
       border-top: 2px solid #007acc;
+      color: white;
+    }
+    .file-explorer {
+      border-left: solid #252526;
+      padding: 6px 12px;
+      background-color: #252526;
+      border-left: 35px solid #252526;
+      border-right: 35px solid #252526;
+      border-bottom: 2px solid #007acc;
       color: white;
     }
     .main {
@@ -37,8 +55,10 @@
       overflow: hidden;
     }
     .sidebar {
-      width: 40px;
-      background-color: #333;
+      width: 200px;
+      background-color: #252526;
+      padding: 8px;
+      border-right: 1px solid #333;
     }
     .editor {
       flex: 1;
@@ -60,6 +80,7 @@
     .comment { color: #6A9955; }
 
     .terminal {
+      border-left: 217px solid #333;
       background-color: #1e1e1e;
       border-top: 1px solid #333;
       height: 30%;
@@ -68,7 +89,7 @@
       font-size: 14px;
     }
 
-    .prompt { color: #4ec9b0; }
+    .prompt { color: #08c557; }
     .output { color: #dcdcaa; }
     input {
       background: none;
@@ -79,15 +100,92 @@
       width: 90%;
       outline: none;
     }
+
+    .files {
+      list-style: none;
+      padding-left: 12px;
+      margin: 0;
+    }
+
+    .files .folder,
+    .files .file {
+      display: flex;
+      align-items: center;
+      padding: 4px 0;
+      cursor: pointer;
+    }
+
+    .files .active {
+      background-color: #3a3d41;
+      padding-left: 4px;
+      border-left: 3px solid #007acc;
+    }
+
   </style>
 </head>
 <body>
-  <div class="title-bar">[Extension Development Host] ● welcome.py - tmp - Visual Studio Code - Insiders</div>
+  <div class="title-bar-top">[Extension Development Host] ● welcome.py - tmp - Visual Studio Code - Copyrights ~ @shamanthss</div>
+  <div class="title-bar"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" style="width: 16px; vertical-align: middle; margin-right: 4px;">  File   Edit    Selection    View    Go    Run    Terminal    Help</div>
   <div class="tabs">
-    <div class="tab">welcome.py ❌</div>
+    <div class="file-explorer">File Explorer</div>
+    <div class="tab"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" style="width: 16px; vertical-align: middle; margin-right: 4px;">welcome.py ❌</div>
   </div>
   <div class="main">
-    <div class="sidebar"></div>
+    <div class="sidebar">
+      <ul class="files">
+        <li>
+          <span class="folder">
+            <img src="https://raw.githubusercontent.com/vscode-icons/vscode-icons/abb2b8d5b0a6f04ad111f33a0d9cfe84a9a6d2dd/icons/default_folder_opened.svg" 
+                 alt="Folder" style="width: 16px; vertical-align: middle; margin-right: 4px;">
+            tmp
+          </span>
+          
+            <li>
+              <span class="file active">└ 
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+                     alt="Python" style="width: 16px; vertical-align: middle; margin-right: 4px;">
+                welcome.py
+              </span>
+            </li>
+            <li>
+                <span class="file file">└ 
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+                       alt="Python" style="width: 16px; vertical-align: middle; margin-right: 4px;">
+                  register.py
+                </span>
+            </li>
+            <li>
+                <span class="file file">└ 
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+                       alt="Python" style="width: 16px; vertical-align: middle; margin-right: 4px;">
+                  login.py
+                </span>
+            </li>
+            <li>
+                <span class="file file">└ 
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+                       alt="Python" style="width: 16px; vertical-align: middle; margin-right: 4px;">
+                  scoreboard.py
+                </span>
+            </li>
+            <li>
+                <span class="file file">└ 
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+                       alt="Python" style="width: 16px; vertical-align: middle; margin-right: 4px;">
+                  exit.py
+                </span>
+            </li>
+            <li>
+                <span class="file file">└ 
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+                       alt="Python" style="width: 16px; vertical-align: middle; margin-right: 4px;">
+                  flag.py
+                </span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
     <div class="editor">
       <div class="code">
 <span class="keyword">def</span> <span class="function">greet_user</span>():
@@ -123,7 +221,7 @@
   </div>
 
   <div class="terminal" id="terminal">
-    <div><span class="prompt">PS C:\Users\Hackerman&gt;</span> python welcome.py</div>
+    <div><span class="prompt">PS C:\Users\Hackerman&gt;</span> python welcome.py</div><br>
     <div class="output">
       Welcome to the CTF!<br>
       Please choose an option:<br>
@@ -132,9 +230,8 @@
       3. View Scoreboard<br>
       4. Exit CTF<br>
     </div>
-    <div>
-        <br>
-      <input type="text" id="user-input" placeholder="Enter your choice..." autofocus>
+    <div><br>
+      <input type="text" id="user-input" placeholder="Enter your choice (1-4): ..." autofocus>
     </div>
   </div>
 
@@ -153,28 +250,28 @@
     });
 
     function getResponse(cmd) {
-    switch (cmd.toLowerCase()) {
+      switch (cmd.toLowerCase()) {
         case '1':
         case 'login':
-            window.location.href = '/login';
-            break;
+          window.location.href = '/login';
+          break;
         case '2':
         case 'register':
-            window.location.href = '/register';
-            break;
+          window.location.href = '/register';
+          break;
         case '3':
         case 'scoreboard':
         case 'view scoreboard':
-            window.location.href = '/scoreboard';
-            break;
+          window.location.href = '/scoreboard';
+          break;
         case '4':
         case 'exit':
-            window.location.href = 'https://raw.githubusercontent.com/shamanthss/ctfd-vscode-theme/refs/heads/main/img/bonk.jpg';
-            break;
+          window.location.href = 'https://raw.githubusercontent.com/shamanthss/ctfd-vscode-theme/refs/heads/main/img/bonk.jpg';
+          break;
         default:
-        window.location.href = 'https://raw.githubusercontent.com/shamanthss/ctfd-vscode-theme/refs/heads/main/img/bonk-default.jpg';
+          window.location.href = 'https://raw.githubusercontent.com/shamanthss/ctfd-vscode-theme/refs/heads/main/img/bonk-default.jpg';
+      }
     }
-}
   </script>
 </body>
 </html>
